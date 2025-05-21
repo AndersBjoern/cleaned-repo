@@ -1,0 +1,207 @@
+.about-me-section {
+  width: 100%;
+  margin-top: 10vh;
+  margin-bottom: 10vh;
+}
+
+.profile-picture-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: -70px;
+  position: relative;
+
+  .outer-ring {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    height: 300px;
+    width: 300px;
+    background-image: var(--about-me-profile-outer-ring);
+    border-radius: 50%;
+    animation: rotate 4s infinite linear;
+  }
+
+  .inner-ring {
+    .profile-pic {
+      height: 300px;
+      width: 300px;
+      border-radius: 50%;
+      overflow: hidden;
+      padding: 6px;
+      position: relative;
+      img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+      }
+    }
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+.about-me-container {
+  padding: 40px;
+  border-radius: 15px;
+  background-color: var(--about-me-background-color);
+  width: 100%;
+  border: 1px solid var(--about-me-border-color);
+
+  .numbers-container {
+    display: flex;
+    justify-content: space-around;
+    padding: 90px 0 40px 0;
+
+    .numbers {
+      width: 30vw;
+      display: flex;
+      flex-direction: column;
+      justify-content: start;
+      text-align: center;
+    }
+  }
+
+  .about-me-text {
+    line-height: var(--about-me-p-line-height);
+    margin-bottom: clamp(40px, 7vw, 80px);
+    .inline-image {
+      height: 70px;
+      width: 120px;
+      border-radius: 50px;
+      object-fit: cover;
+      border: 1px solid var(--font-color);
+      vertical-align: middle;
+      margin: 0 10px;
+    }
+
+    b {
+      color: var(--font-bold-color);
+    }
+  }
+
+  .certifications {
+    .cert-container {
+      max-height: 300px;
+      overflow: hidden;
+      position: relative;
+      transition: max-height 0.5s ease;
+    }
+    .cert-container.show-all {
+      max-height: 1000px;
+    }
+    .cert-container::after {
+      pointer-events: none;
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 250px;
+      background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0),
+        var(--about-me-background-color)
+      );
+      display: block;
+      transition: opacity 0.3s ease;
+    }
+    .cert-container.show-all::after {
+      opacity: 0;
+    }
+    .show-more-btn {
+      display: block;
+      margin: 10px auto;
+      padding: 10px 20px;
+      font-size: 16px;
+      border: 1px solid var(--primary-color);
+      color: #fff;
+      background-color: var(--about-me-background-color);
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .show-more-btn:hover {
+      background-color: var(--primary-color);
+    }
+  }
+}
+
+.cert-table {
+  width: 100%;
+  border-collapse: collapse;
+
+  tr {
+    cursor: pointer;
+
+    td {
+      padding: 20px 0;
+      vertical-align: top;
+
+      &.icon-cell {
+        width: clamp(50px, 15%, 200px);
+        text-align: center;
+
+        i {
+          font-size: 1rem;
+          color: #fff;
+          border: 2px solid #02a2c4;
+          border-radius: 50%;
+          padding: 15px;
+          display: inline-block;
+        }
+      }
+
+      &.info-cell {
+        padding-left: 30px;
+        word-wrap: break-word;
+
+        .cert-name {
+          font-weight: bold;
+        }
+
+        .issuer {
+          margin-left: 10px;
+          margin-top: 5px;
+        }
+
+        .date {
+          display: block;
+          font-style: italic;
+          color: var(--font-color-dark);
+          margin-top: 5px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .profile-pic {
+    height: 150px;
+    width: 150px;
+  }
+
+  .about-me-container {
+    padding: 20px;
+  }
+
+  p.about-me {
+    font-size: 14px;
+
+    b {
+      font-size: 16px;
+    }
+  }
+}
